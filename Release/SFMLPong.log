@@ -1,0 +1,50 @@
+﻿  Game.cpp
+D:\vis_stud\SFMLPong\Game.cpp(111,292): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\vis_stud\SFMLPong\Game.cpp(111,83): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\vis_stud\SFMLPong\Game.cpp(136,298): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\vis_stud\SFMLPong\Game.cpp(136,85): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\vis_stud\SFMLPong\Game.cpp(170,296): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\vis_stud\SFMLPong\Game.cpp(170,83): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\vis_stud\SFMLPong\Game.cpp(188,296): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\vis_stud\SFMLPong\Game.cpp(188,83): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\vis_stud\SFMLPong\Game.cpp(246,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\vis_stud\SFMLPong\Game.cpp(386,20): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+  SFMLPong.cpp
+  Generating code
+  2 of 148 functions ( 1.4%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  SFMLPong.vcxproj -> D:\vis_stud\SFMLPong\Release\SFMLPong.exe
