@@ -13,8 +13,8 @@ int main()
 	while (game.getIsOpen())
 	{
 		game.updating();
-
 		game.rendering();
 	}
+	return 0;
 }
 
