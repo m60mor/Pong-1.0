@@ -9,7 +9,7 @@
 int main()
 {
 	Game game;
-
+	//Petla gry
 	while (game.getIsOpen())
 	{
 		game.updating();
