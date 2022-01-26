@@ -115,6 +115,7 @@ void Game::initMenu()
 
 void Game::pauseMenu()
 {
+	//menu pauzowania
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		if (prevKey != sf::Keyboard::Escape && mainMenu != 1)
@@ -157,6 +158,7 @@ void Game::pauseMenu()
 
 void Game::modeSelect()
 {
+	//menu wyboru trybu gry
 	menu.setSize(sf::Vector2f(250.f, 150.f));
 	menu.setPosition(sf::Vector2f((map.getGlobalBounds().width + 2 * map.getOutlineThickness() + 2 * menu.getOutlineThickness() - menu.getGlobalBounds().width) / 2, (map.getGlobalBounds().height - menu.getGlobalBounds().height + 20) / 2));
 
@@ -174,6 +176,7 @@ void Game::modeSelect()
 
 void Game::diffSelect()
 {
+	//Menu wyboru trybu trudnosci
 	menu.setSize(sf::Vector2f(250.f, 225.f));
 	menu.setPosition(sf::Vector2f((map.getGlobalBounds().width + 2 * map.getOutlineThickness() + 2 * menu.getOutlineThickness() - menu.getGlobalBounds().width) / 2, (map.getGlobalBounds().height - menu.getGlobalBounds().height + 20) / 2));
 
@@ -204,7 +207,7 @@ void Game::playerMove()
 		playerMoved = 1;
 	}
 	
-	//Kolizja z œcianami
+	//Kolizja z scianami
 	if (player.getPosition().y <= 22)
 	{
 		player.setPosition(sf::Vector2f(40.f, 23.f));
@@ -229,7 +232,7 @@ void Game::player2Move()
 		aiMoved = 1;
 	}
 
-	//Kolizja z œcianami
+	//Kolizja z scianami
 	if (ai.getPosition().y <= 22)
 	{
 		ai.setPosition(sf::Vector2f(745.f, 23.f));
@@ -242,22 +245,19 @@ void Game::player2Move()
 
 void Game::aiMove()
 {
-	//Œledzenie pi³ki
+	//Åšledzenie piÅ‚ki
 	float aiBallTracking = ball.getPosition().y + 5 - ai.getPosition().y - 40 + 0.01;
-	//std::cout << abs(aiBallTracking) << " " << (20 + 800 / ball.getGlobalBounds().left + 5) + 3 * (diff + 1) << std::endl;
 	if (abs(aiBallTracking) >= (20 + 800 / ball.getGlobalBounds().left + 5) + 3 * (diff + 1))
 	{
-		//std::cout << (1 + diff) << " " << (diff + 3.f) * aiBallTracking / abs(aiBallTracking) << std::endl;
 		ai.move(0.f, (diff + 3.f) * aiBallTracking / abs(aiBallTracking));
 	}
 	else
 	{
-		//std::cout << (1 + diff) << " " << (((float)diff / 4) + 0.5f) * aiBallTracking / abs(aiBallTracking) << std::endl;
 		ai.move(0.f, (((float)diff / 4) + 0.5f) * aiBallTracking / abs(aiBallTracking));
 	}
 	aiMoved = 1;
 	
-	//Kolizja ze œcianami
+	//Kolizja z scianami
 	if (ai.getPosition().y <= 22)
 	{
 		ai.setPosition(sf::Vector2f(745.f, 23.f));
@@ -275,7 +275,7 @@ void Game::ballMove()
 		ballSpeedChangeX = 0;
 	}
 	
-	//kolizja z œcianami
+	//kolizja z Å›cianami
 	if (ball.getPosition().y <= 20)
 	{
 		ball.setPosition(sf::Vector2f(ball.getPosition().x, 21));
@@ -289,14 +289,11 @@ void Game::ballMove()
 		wallSound.play();
 	}
 
-	//std::cout << "abs: " << abs(ball.getPosition().y - player.getPosition().y - 80) << " " << abs(ball.getPosition().y - ai.getPosition().y - 80) << std::endl;
 	//Kolizja z graczem
 	if (player.getGlobalBounds().intersects(ball.getGlobalBounds()))
 	{
-		//std::cout << "player: " << player.getPosition().x + 15 - ball.getPosition().x << " 2: " << ball.getPosition().y << " " << player.getPosition().y << " : " << abs(ball.getPosition().y - player.getPosition().y - 80) << std::endl;
 		if (ball.getPosition().y + 10 <= player.getPosition().y + 15 && player.getPosition().x + 15 - ball.getPosition().x > abs(ball.getPosition().y - player.getPosition().y))
 		{
-			//std::cout << "left" << std::endl;
 			ballMoveY = ballMoveY * 2;
 			if (ballMoveY >= 0)
 			{
@@ -306,7 +303,6 @@ void Game::ballMove()
 		}
 		else if (ball.getPosition().y >= player.getPosition().y + 65 && player.getPosition().x + 15 - ball.getPosition().x > abs(ball.getPosition().y - player.getPosition().y - 80))
 		{
-			//std::cout << "right" << std::endl;
 			ballMoveY = ballMoveY * 2;
 			if (ballMoveY <= 0)
 			{
@@ -316,21 +312,19 @@ void Game::ballMove()
 		}
 		else
 		{
-			//std::cout << "else" << std::endl;
 			ball.setPosition(sf::Vector2f(player.getPosition().x + 16, ball.getPosition().y));
 			ballMoveX = -ballMoveX + ballSpeedChangeX;
 			ballMoveY += (ball.getPosition().y + 5 - (player.getPosition().y + 40)) / 40;
 		}
 		paddleSound.play();
 	}
+	//----------------------------------------------------------
 
 	//Kolizja z ai / 2 graczem
 	else if (ai.getGlobalBounds().intersects(ball.getGlobalBounds()))
 	{
-		//std::cout << "ai: " << ball.getPosition().x + 10 - ai.getPosition().x << " 2: " << ball.getPosition().y << " " << ai.getPosition().y << " : " << abs(ball.getPosition().y - ai.getPosition().y - 80) << std::endl;
 		if (ball.getPosition().y + 10 <= ai.getPosition().y + 15 && ball.getPosition().x + 10 - ai.getPosition().x > abs(ball.getPosition().y - ai.getPosition().y))
 		{
-			//std::cout << "left ai" << std::endl;
 			ballMoveY = ballMoveY * 2;
 			if (ballMoveY >= 0)
 			{
@@ -340,7 +334,6 @@ void Game::ballMove()
 		}
 		else if (ball.getPosition().y >= ai.getPosition().y + 65 && ball.getPosition().x + 10 - ai.getPosition().x > abs(ball.getPosition().y - ai.getPosition().y - 80))
 		{
-			//std::cout << "rigt ai" << std::endl;
 			ballMoveY = ballMoveY * 2;
 			if (ballMoveY <= 0)
 			{
@@ -350,7 +343,6 @@ void Game::ballMove()
 		}
 		else
 		{
-			//std::cout << "else ai" << std::endl;
 			ball.setPosition(sf::Vector2f(ai.getPosition().x - 16, ball.getPosition().y));
 			ballMoveX = -ballMoveX - ballSpeedChangeX;
 			ballMoveY += (ball.getPosition().y + 5 - (ai.getPosition().y + 40)) / 40;
@@ -360,6 +352,7 @@ void Game::ballMove()
 	playerMoved = 0;
 	aiMoved = 0;
 	ball.move(sf::Vector2f(ballMoveX, ballMoveY));
+	//----------------------------------------------------------
 }
 
 void Game::ballScore()
@@ -392,6 +385,7 @@ void Game::updating()
 				{
 					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 					{
+						//Zatwierdzanie opcji
 						if (buttons[0].getFillColor() == sf::Color(20, 20, 20, 255))
 						{
 							if (modeSelection == 1)
@@ -441,8 +435,10 @@ void Game::updating()
 							diffSelection = 0;
 							stop = 0;
 						}
+						//----------------------------------------------------------
 					}
 
+					//Poruszanie sie po menu
 					int key = 0;
 					int help = 1;
 					if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -466,6 +462,7 @@ void Game::updating()
 						temp = temp + key;
 						buttons[temp].setFillColor(sf::Color(20, 20, 20, 255));
 					}
+					//------------------------------------------------------------
 				}
 			break;
 
@@ -515,11 +512,6 @@ void Game::rendering()
 	window->display();
 }
 
-bool Game::getIsOpen()
-{
-	return window->isOpen();
-}
-
 void Game::roundOver()
 {
 	ballMoveX = -3.f + (rand() % 2) * 6.f;
@@ -552,4 +544,9 @@ void Game::gameReset()
 	initPlayerAndAi();
 	initBall();
 	modeSelect();
+}
+
+bool Game::getIsOpen()
+{
+	return window->isOpen();
 }
